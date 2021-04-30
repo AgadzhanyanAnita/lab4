@@ -1,3 +1,25 @@
+<?php
+//Подключаем файлы
+require_once __DIR__ . '/includes/data.php';
+require_once __DIR__ . '/includes/functions.php';
+
+if(!empty($_POST)) {
+    debug($_POST);
+
+    //Вызываем load,чтобы к fields добавить еще 'value'
+    $fields = load($fields);
+    debug($fields);
+
+    if($errors = validate($fields)) {
+        debug($errors);
+    }
+    else {
+        echo 'OK';
+    }
+}
+?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,7 +34,7 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
 
-            <form>
+            <form method="post">
 
                 <div class="form-group row">
                     <label for="name"">Имя</label>
